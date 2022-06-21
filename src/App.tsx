@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Header from './Views/header';
+import TestUI from './Views/test';
+import ReactErrorUI from './Utils/ErrorBoundary/Library/react-error-boundary';
 
 function App() {
   return (
@@ -12,8 +14,10 @@ function App() {
         <p>
           Add new components inside <code>src/Components</code> and also add the each view page or components inside <code> src/Views</code>.
         </p>
-        
+        {/* <TestUI /> */}
+        <ReactErrorUI />
       </header>
+     
     </div>
   );
 }
