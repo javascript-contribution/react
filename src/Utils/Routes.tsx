@@ -1,6 +1,7 @@
 import logo from '../Assets/logo.svg';
 import RsuiteStepper from '../Components/Stepper/Library'
 import StepIndex from '../Components/Stepper/Custom';
+import Redux_Toolkit_Form from '../Components/Forms/Redux_Toolkit_Form';
 
 const routes = [
     {
@@ -14,6 +15,10 @@ const routes = [
     {
       path: "/rsuite-stepper",
       main: () => <RsuiteStepper />
+    },
+    {
+      path: "/redux-form",
+      main: () => <Redux_Toolkit_Form />
     }
   ];
 

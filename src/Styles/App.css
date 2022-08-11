@@ -52,3 +52,18 @@
     transform: rotate(360deg);
   }
 }
+
+.date{
+  min-width: 200px;
+  min-height: 50px;
+}
+.textarea{
+  width: 100%;
+}
+
+.grid{
+  margin: 20px;
+  padding: 20px;
+  color: rgb(74, 121, 183);
+  
+}
