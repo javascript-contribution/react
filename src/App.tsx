@@ -19,11 +19,11 @@ export default function App() {
          
              {/* <Route 
       
-             path={TREE.map((element, index) =>    TREE[index].nestedComponent.map((nestedEle, i) =>  nestedEle.url))}
+             path={TREE.map((element, index) =>    TREE[index].nestedComponent.map((nestedEle, i) =>  nestedEle.url.concat(nestedEle.url))  )}
              element={ TREE.map((element, index) =>    TREE[index].nestedComponent.map((nestedEle, i) =>  nestedEle.component)   ) } />
 
    {TREE.map((route, index) => { 
-            const url = route.nestedComponent.map((nestedEle, i) =>  nestedEle.url[index])
+            const url = route.nestedComponent.map((nestedEle, i) =>  nestedEle.url[index].concat(nestedEle.url[index]))
              return <Route key={index} path={url} element={<route.main />} />
    })} */}
             {RouteComponent.map((route, index) => (
@@ -31,6 +31,7 @@ export default function App() {
             ))}
           </Routes>
         </div>
+    
         <EditSpeedDial />
         <BottomBar />
       </Box>

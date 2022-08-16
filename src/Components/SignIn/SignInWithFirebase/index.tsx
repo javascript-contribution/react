@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { googleSignInWithPopup } from '../../../Utils/Firebase/firebase.utils'
 import { useNavigate } from 'react-router-dom';
 
+import { TREE } from '../../../Utils/Routes'
 
 const theme = createTheme();
 
@@ -30,7 +31,7 @@ export default function SignInWithFirebase() {
     
   };
 
-  const handleGoogleLogin = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleGoogleLogin = () => {
     const logedGoogleUser = async () => {
         const response = await googleSignInWithPopup
         console.log(response);
@@ -112,7 +113,7 @@ export default function SignInWithFirebase() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                onClick={(event: any) => handleGoogleLogin(event)}
+                onClick={handleGoogleLogin}
               >
                 Sign In with Google
               </Button>
@@ -132,6 +133,7 @@ export default function SignInWithFirebase() {
             </Box>
           </Box>
         </Grid>
+        
       </Grid>
     </ThemeProvider>
   );
