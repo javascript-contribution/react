@@ -22,7 +22,7 @@ import {
   getDocs,
   QueryDocumentSnapshot,
 } from 'firebase/firestore';
-import { Category } from '../../Types/Categories/category.types';
+// import { Category } from '../../Types/Categories/category.types';
 
 
 const firebaseConfig = {
@@ -71,15 +71,15 @@ export const addCollectionAndDocuments = async <T extends ObjectToAdd>(
   console.log('done');
 };
 
-export const getCategoriesAndDocuments = async (): Promise<Category[]> => {
-  const collectionRef = collection(db, 'categories');
-  const q = query(collectionRef);
+// export const getCategoriesAndDocuments = async (): Promise<Category[]> => {
+//   const collectionRef = collection(db, 'categories');
+//   const q = query(collectionRef);
 
-  const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map(
-    (docSnapshot) => docSnapshot.data() as Category
-  );
-};
+//   const querySnapshot = await getDocs(q);
+//   return querySnapshot.docs.map(
+//     (docSnapshot) => docSnapshot.data() as Category
+//   );
+// };
 
 export type AdditionalInformation = {
   displayName?: string;

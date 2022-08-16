@@ -59,6 +59,9 @@
     "@types/react-redux": "^7.1.24",
     "@types/react-router-dom": "^5.3.3",
     "@types/redux-logger": "^3.0.9",
+    "@types/redux-persist": "^4.3.1",
+    "@types/redux-saga": "^0.10.5",
+    "@types/reselect": "^2.2.0",
     "eslint": "^7.32.0"
   }
 }
