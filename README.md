@@ -21,6 +21,17 @@ https://github.com/TheAlgorithms/Javascript/blob/master/CONTRIBUTING.md
 => Here is the example for js contributions done by multiple collaborators with single motive : https://github.com/atom/atom
 => To proceed ahead, someone from HR or js contributor must make an new GitHub repository which is free unless using full fledge features or tools such as Continous integration, etc..
 
+# Folder Structure
+src/Assets                                                              => Store all images and assets here
+src/Components                                                          => Store all components and their fragment components here
+eg. src/Components/Form/Custom/index.tsx                                => Keep inside "index" file for custom module
+    src/Components/Form/Library/react-hook-form.tsx                     => Use sub folder "Library" for any module from npm
+    src/Components/Form/Library/Fragments/hook-form-button.tsx          => Use sub folder "Fragments" for any small component for main index.tsx
+src/Performance                                                         => Keep Web Vitals here
+src/Styles                                                              => Maintain all CSS or styles here
+src/Testing                                                             => Maintain all test files here
+src/Types                                                               => Use folder for all typescript export
+src/Utils                                                               => Use this as your normal utility; also use this for routing
 # Branch Structure
 
 Never push changes to the master branch always check-out a branch and raise a PR.

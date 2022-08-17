@@ -1,25 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Header from './Views/header';
-import TestUI from './Views/test';
-import ReactErrorUI from './Utils/ErrorBoundary/Library/react-error-boundary';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import RouteComponent from "./Utils/Routes";
+import SideBar from "./Components/SideBar";
+import "./Styles/App.css";
+import AppBar from "./Components/AppBar";
+import BottomBar from "./Components/BottomBar";
+import EditSpeedDial from "./Components/EditSpeedDial";
+import { Box } from "@mui/material";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Header />
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Add new components inside <code>src/Components</code> and also add the each view page or components inside <code> src/Views</code>.
-        </p>
-        {/* <TestUI /> */}
-        <ReactErrorUI />
-      </header>
-     
-    </div>
+    <Router>
+      <Box sx={{ display: "flex", scrollBehavior: "smooth" }}>
+        <AppBar />
+        <SideBar />
+        <div className={"components"}>
+          <Routes>
+            {RouteComponent.map((route, index) => (
+              <Route key={index} path={route.path} element={<route.main />} />
+            ))}
+          </Routes>
+        </div>
+        <EditSpeedDial />
+        <BottomBar />
+      </Box>
+    </Router>
   );
 }
-
-export default App;
