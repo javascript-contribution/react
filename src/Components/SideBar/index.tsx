@@ -8,7 +8,7 @@ import {
   AccordionDetails,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { TREE } from "../../Utils/Routes";
+import TREE  from "../../Utils/Routes";
 
 const SideBar = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
@@ -28,7 +28,7 @@ const SideBar = () => {
     >
       <Typography variant={"h5"}>Components</Typography>
 
-      {TREE.map((element, index) => (
+      {TREE.map((element: { name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; nestedComponent: any[]; }, index: any) => (
         <Accordion
           expanded={expanded === element.name + index}
           onChange={handleChange(element.name + index)}
@@ -45,15 +45,15 @@ const SideBar = () => {
               </Link>
             </Typography>
           </AccordionSummary>
-          {element.nestedComponent.map((nestedElement, index) => (
+          {element.nestedComponent.map((nestedElement : any, index : number) => (
             <AccordionDetails>
               <Typography key={nestedElement.name + index}>
                 <Link
                   key={index + ":" + nestedElement.name}
-                  to={nestedElement.name.replace(/\s/g, "-").toLowerCase()}
+                  to={nestedElement.url.replace(/\s/g, "-").toLowerCase()}
                   className={"link"}
                 >
-                  {nestedElement.name}
+                  { nestedElement.name.slice(0,1).toUpperCase() + nestedElement.name.replace("-", " " ).toLowerCase().slice(1, nestedElement.name.length)}
                 </Link>
               </Typography>
             </AccordionDetails>

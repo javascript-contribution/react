@@ -1,8 +1,5 @@
 import { takeLatest, put, all, call } from 'typed-redux-saga/macro';
 import { User } from 'firebase/auth';
-
-import { USER_ACTION_TYPES } from './user.types';
-
 import {
   signInSuccess,
   signInFailed,
@@ -10,9 +7,6 @@ import {
   signUpFailed,
   signOutSuccess,
   signOutFailed,
-  EmailSignInStart,
-  SignUpStart,
-  SignUpSuccess,
 } from './user.action';
 
 import {
@@ -22,8 +16,8 @@ import {
   signInAuthUserWithEmailAndPassword,
   createAuthUserWithEmailAndPassword,
   signOutUser,
-  AdditionalInformation,
-} from '../../Utils/Firebase/firebase.utils';
+} from '../../Utils/Firebase';
+import { AdditionalInformation, EmailSignInStart, SignUpStart, SignUpSuccess, USER_ACTION_TYPES } from '../../Types/Users';
 
 export function* getSnapshotFromUserAuth(
   userAuth: User,
@@ -38,7 +32,12 @@ export function* getSnapshotFromUserAuth(
 
     if (userSnapshot) {
       yield* put(
-        signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() })
+        signInSuccess({
+          id: userSnapshot.id, ...userSnapshot.data(),
+          createdAt: new Date(),
+          displayName: '',
+          email: ''
+        })
       );
     }
   } catch (error) {
