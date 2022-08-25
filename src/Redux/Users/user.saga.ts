@@ -1,5 +1,5 @@
 import { takeLatest, put, all, call } from 'typed-redux-saga/macro';
-import { User } from 'firebase/auth';
+import { UserInfo } from 'firebase/auth';
 import {
   signInSuccess,
   signInFailed,
@@ -20,7 +20,7 @@ import {
 import { AdditionalInformation, EmailSignInStart, SignUpStart, SignUpSuccess, USER_ACTION_TYPES } from '../../Types/Users';
 
 export function* getSnapshotFromUserAuth(
-  userAuth: User,
+  userAuth: UserInfo,
   additionalDetails?: AdditionalInformation
 ) {
   try {
@@ -34,7 +34,8 @@ export function* getSnapshotFromUserAuth(
       yield* put(
         signInSuccess({
           id: userSnapshot.id, ...userSnapshot.data(),
-          createdAt: new Date(),
+          // createdAt: new Date(),
+          photoURL : '',
           displayName: '',
           email: ''
         })

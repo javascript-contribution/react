@@ -1,7 +1,5 @@
-// import { User } from "firebase/auth";
-
-import { User } from "firebase/auth";
-
+import { User, UserInfo } from "firebase/auth";
+// Types for firebase authentication
 export enum USER_ACTION_TYPES {
     SET_CURRENT_USER = 'user/SET_CURRENT_USER',
     CHECK_USER_SESSION = 'user/CHECK_USER_SESSION',
@@ -17,6 +15,23 @@ export enum USER_ACTION_TYPES {
     SIGN_OUT_FAILED = 'user/SIGN_OUT_FAILED',
   };
 
+  // export type UserData = {
+  //   createdAt: Date;
+  //   displayName: string;
+  //   email: string;
+  //   phoneNumber: Number;
+   
+  // };
+  
+  export type AdditionalInformation = {
+    displayName?: string;
+  };
+  
+  export type ObjectToAdd = {
+    title : string;
+  }
+
+  // Types for redux
   export type ActionWithPayload<T, P> = {
     type: T;
     payload: P;
@@ -28,18 +43,12 @@ export enum USER_ACTION_TYPES {
 
   
 export type CheckUserSession = Action<USER_ACTION_TYPES.CHECK_USER_SESSION>;
-export type UserData = {
-  createdAt: Date;
-  displayName: string;
-  email: string;
-};
 
-export type AdditionalInformation = {
-  displayName?: string;
-};
+
+
 export type SetCurrentUser = ActionWithPayload<
   USER_ACTION_TYPES.SET_CURRENT_USER,
-  UserData
+  UserInfo
 >;
 
 export type GoogleSignInStart = Action<USER_ACTION_TYPES.GOOGLE_SIGN_IN_START>;
@@ -56,7 +65,7 @@ export type EmailSignInStart = ActionWithPayload<
 
 export type SignInSuccess = ActionWithPayload<
   USER_ACTION_TYPES.SIGN_IN_SUCCESS,
-  UserData
+  UserInfo
 >;
 
 export type SignInFailed = ActionWithPayload<

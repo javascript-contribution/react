@@ -1,4 +1,4 @@
-import { User } from "firebase/auth";
+import { User, UserInfo } from "firebase/auth";
 import {
   AdditionalInformation,
   CheckUserSession,
@@ -13,7 +13,6 @@ import {
   SignUpFailed,
   SignUpStart,
   SignUpSuccess,
-  UserData,
   USER_ACTION_TYPES,
 } from "../../Types/Users";
 
@@ -24,7 +23,7 @@ export const checkUserSession = withMatcher(
 );
 
 export const setCurrentUser = withMatcher(
-  (user: UserData): SetCurrentUser =>
+  (user: UserInfo): SetCurrentUser =>
     createAction(USER_ACTION_TYPES.SET_CURRENT_USER, user)
 );
 
@@ -38,7 +37,7 @@ export const emailSignInStart = withMatcher(
 );
 
 export const signInSuccess = withMatcher(
-  (user: UserData & { id: string }): SignInSuccess =>
+  (user: UserInfo & { id: string }): SignInSuccess =>
     createAction(USER_ACTION_TYPES.SIGN_IN_SUCCESS, user)
 );
 

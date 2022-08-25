@@ -15,18 +15,17 @@ import {
   emailSignInStart,
 } from "../../../Redux/Users/user.action";
 import { IconButton } from "@mui/material";
-// import { user } from "firebase/auth";
+// import { createUserDocumentFromAuth, signInWithGooglePopup } from "../../../Utils/Firebase";
+
 const defaultFormFields = {
   email: "",
   password: "",
 };
 
-// import { TREE } from '../../../Utils/Routes'
 
 const theme = createTheme();
 
 export default function SignInWithFirebase() {
-  // console.log(user)
   const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
@@ -36,6 +35,9 @@ export default function SignInWithFirebase() {
   };
 
   const signInWithGoogle = async () => {
+    // const { user } = await signInWithGooglePopup();
+    // const userDocRef = await createUserDocumentFromAuth(user);
+    // console.log("user Doc reference      => .....",userDocRef)
     dispatch(googleSignInStart());
   };
 
@@ -50,11 +52,11 @@ export default function SignInWithFirebase() {
     }
   };
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
+  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = event.target;
 
-    setFormFields({ ...formFields, [name]: value });
-  };
+  //   setFormFields({ ...formFields, [name]: value });
+  // };
 
   return (
     <ThemeProvider theme={theme}>

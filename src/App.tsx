@@ -7,7 +7,7 @@ import BottomBar from "./Components/BottomBar";
 import EditSpeedDial from "./Components/EditSpeedDial";
 import "./Styles/App.css";
 import { Box } from "@mui/material";
-import { AuthProvider } from "./Utils/Contexts/AuthProvider";
+// import { AuthProvider } from "./Utils/Contexts/AuthProvider";
 
 export default function App() {
   return (
@@ -16,7 +16,7 @@ export default function App() {
         <AppBar />
         <SideBar />
         <div className={"components"}>
-        <AuthProvider>
+        {/* <AuthProvider> */}
           <Routes>
             <Route path={TREE[0].baseURL} element={TREE[0].component}>
               <Route path={TREE[0].nestedComponent[0].url} element={TREE[0].nestedComponent[0].component} />
@@ -38,7 +38,7 @@ export default function App() {
               <Route path={TREE[9].nestedComponent[1].url} element={TREE[9].nestedComponent[1].component} />
             </Route>
           </Routes>
-          </AuthProvider>
+          {/* </AuthProvider> */}
         </div>
         <EditSpeedDial />
         <BottomBar />
