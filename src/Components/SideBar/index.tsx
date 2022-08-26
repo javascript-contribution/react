@@ -28,7 +28,7 @@ const SideBar = () => {
     >
       <Typography variant={"h5"}>Components</Typography>
 
-      {TREE.map((element: { name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; nestedComponent: any[]; }, index: any) => (
+      {TREE.map((element: any, index: any) => (
         <Accordion
           expanded={expanded === element.name + index}
           onChange={handleChange(element.name + index)}
@@ -40,7 +40,7 @@ const SideBar = () => {
             id="panel1bh-header"
           >
             <Typography>
-              <Link to="/" className={"link"}>
+              <Link to={element?.baseURL} className={"link"}>
                 {element.name}
               </Link>
             </Typography>

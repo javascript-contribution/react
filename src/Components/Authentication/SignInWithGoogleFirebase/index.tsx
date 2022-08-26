@@ -1,27 +1,21 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-
-import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useState, FormEvent, ChangeEvent } from "react";
+import React, { useState, FormEvent, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
 import {
   googleSignInStart,
   emailSignInStart,
 } from "../../../Redux/Users/user.action";
-import { IconButton } from "@mui/material";
-// import { createUserDocumentFromAuth, signInWithGooglePopup } from "../../../Utils/Firebase";
+
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Alert, Avatar, Box, Button, Checkbox, CircularProgress, CssBaseline, FormControlLabel, Grid, IconButton, Link, Paper, TextField, Tooltip, Typography } from "@mui/material";
+import { useAuth } from "../../../Utils/Auth";
+import { UserInfo } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const defaultFormFields = {
   email: "",
   password: "",
 };
-
 
 const theme = createTheme();
 
@@ -29,15 +23,15 @@ export default function SignInWithFirebase() {
   const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const [userLoggedInData, setUserLoggedInData] = React.useState<null | any | UserInfo>(null);
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
 
   const signInWithGoogle = async () => {
-    // const { user } = await signInWithGooglePopup();
-    // const userDocRef = await createUserDocumentFromAuth(user);
-    // console.log("user Doc reference      => .....",userDocRef)
     dispatch(googleSignInStart());
   };
 
@@ -45,18 +39,35 @@ export default function SignInWithFirebase() {
     event.preventDefault();
 
     try {
+      setError("");
+      setLoading(true);
       dispatch(emailSignInStart(email, password));
+      navigate("/");
       resetFormFields();
     } catch (error) {
+      setError("Failed to Sign in");
       console.log("user sign in failed", error);
     }
+    setLoading(false);
   };
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormFields({ ...formFields, [name]: value });
+  };
+  const handleGoogleSignIn = () => {
+    setLoading(true);
+    signInWithGoogle()
+  }
+ 
+  const loggedInUser : any= useAuth()
 
-  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = event.target;
+//   if (loggedInUser?.isAnonymous ){
+//     navigate("/");
+//  }
 
-  //   setFormFields({ ...formFields, [name]: value });
-  // };
+  React.useEffect(() => {
+    setUserLoggedInData(loggedInUser)
+}, [loggedInUser])
 
   return (
     <ThemeProvider theme={theme}>
@@ -88,26 +99,46 @@ export default function SignInWithFirebase() {
               alignItems: "center",
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            {/* <Typography component="h1" variant="h5">
+            <Tooltip
+            title={
+              userLoggedInData ? userLoggedInData?.displayName : userLoggedInData?.email
+            }
+          >
+            <IconButton sx={{ p: 0, margin: 2,}}>
+              <Avatar sx={{ m: 2, bgcolor: "secondary.main" }}>
+                {userLoggedInData ? (
+                  <Avatar
+                    alt={userLoggedInData?.displayName}
+                    src={userLoggedInData?.photoURL}
+                    sizes={'large'}
+                  />
+                ) : (
+                  <LockOutlinedIcon />
+                )}
+              </Avatar>
+            </IconButton>
+          </Tooltip>
+
+      
+            <Typography component="h1" variant="h5">
               Sign in
-            </Typography> */}
+            </Typography>
             <Box
               component="form"
               noValidate
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
-              {/* <TextField
+              {error && <Alert >{error}</Alert>}
+              <TextField
                 margin="normal"
                 required
                 fullWidth
                 id="email"
                 label="Email Address"
+                onChange={handleChange}
                 name="email"
-                // value={formFields.email}
+                value={email}
                 autoComplete="email"
                 autoFocus
               />
@@ -115,9 +146,10 @@ export default function SignInWithFirebase() {
                 margin="normal"
                 required
                 fullWidth
-                name="password"
                 label="Password"
-                // value={formFields.password}
+                onChange={handleChange}
+                name="password"
+                value={password}
                 type="password"
                 id="password"
                 autoComplete="current-password"
@@ -132,17 +164,17 @@ export default function SignInWithFirebase() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
-              </Button> */}
+                {loading ? <CircularProgress color="inherit" /> : 'Sign In'} 
+              </Button>
 
               <Button
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
                 type="button"
-                onClick={signInWithGoogle}
+                onClick={handleGoogleSignIn}
               >
-                <IconButton aria-label="delete" size="small">
+                
                   <img
                     width="40"
                     height="40"
@@ -151,21 +183,20 @@ export default function SignInWithFirebase() {
                     }
                     alt="Google"
                   />
-                </IconButton>
-                Sign In with Google
+               {loading ? <CircularProgress color="inherit" /> : ' Sign In with Google'} 
               </Button>
-              {/* <Grid container>
+              <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
+                  <Link onClick={() => navigate('/authenticate/forgot-password')} variant="body2">
                     Forgot password?
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link onClick={() => navigate('/authenticate/signup')} variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
-              </Grid> */}
+              </Grid>
             </Box>
           </Box>
         </Grid>

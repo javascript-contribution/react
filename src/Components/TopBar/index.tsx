@@ -6,62 +6,27 @@ import {
   Button,
   Container,
   IconButton,
-  InputBase,
   Menu,
   MenuItem,
   Toolbar,
   Tooltip,
   Typography,
 } from "@mui/material";
-import { styled, alpha } from "@mui/material/styles";
+import DashboardCustomizeRoundedIcon from "@mui/icons-material/DashboardCustomizeRounded";
 import AdbIcon from "@mui/icons-material/Adb";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import RightDrawer from "./Fragments/RightDrawer";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useNavigate } from "react-router";
+import {
+  Search,
+  SearchIconWrapper,
+  StyledInputBase,
+} from "./Fragments/StyledWrapper";
+import { useAuth } from "../../Utils/Auth";
+import { UserInfo } from "firebase/auth";
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-  },
-}));
 const pages = ["Dashboard", "Micro-Services", "About"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -72,18 +37,20 @@ const TopAppBar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
-
+  const [userLoggedInData, setUserLoggedInData] = React.useState<null | any | UserInfo>(null);
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
     setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const handleNavMenuClick = (url: string) => {
     navigate(url.toLowerCase());
   };
@@ -92,9 +59,14 @@ const navigate = useNavigate();
     setAnchorElUser(null);
   };
 
+  const loggedInUser = useAuth() as unknown as UserInfo;
+    React.useEffect(() => {
+      setUserLoggedInData(loggedInUser)
+  }, [loggedInUser])
+  console.log(loggedInUser)
   return (
     <AppBar position="fixed">
-      <Container maxWidth="xl" >
+      <Container maxWidth="xl">
         <Toolbar>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
@@ -194,15 +166,31 @@ const navigate = useNavigate();
               />
             </Search>
           </Box>
-          <Box sx={{ flexGrow: 0.1 }}>
-            <Tooltip title="Sign In or Sign Up">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
-                <Avatar sx={{ m: 2, bgcolor: "secondary.main" }}>
+          <Tooltip
+            title={
+              userLoggedInData ? userLoggedInData?.displayName : "Sign In or Sign Up"
+            }
+          >
+            <IconButton sx={{ p: 0 }}>
+              <Avatar sx={{ m: 2, bgcolor: "secondary.main" }}>
+                {loggedInUser ? (
+                  <Avatar
+                    alt={userLoggedInData?.displayName}
+                    src={userLoggedInData?.photoURL}
+                  />
+                ) : (
                   <LockOutlinedIcon />
-                </Avatar>
+                )}
+              </Avatar>
+            </IconButton>
+          </Tooltip>
+          <Box sx={{ flexGrow: 0.1 }}>
+            <Tooltip title={"Menu Bar"}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 1, margin: 1 }}>
+                <DashboardCustomizeRoundedIcon />
               </IconButton>
             </Tooltip>
+
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"

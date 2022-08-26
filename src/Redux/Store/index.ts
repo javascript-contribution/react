@@ -12,9 +12,7 @@ declare global {
   }
 }
 
-
 const sagaMiddleware = createSagaMiddleware();
-
 
 const middleWares = [
   process.env.NODE_ENV !== 'production' && logger,
