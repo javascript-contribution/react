@@ -27,6 +27,7 @@ import {
 import { useAuth } from "../../../Utils/Auth";
 import { UserInfo } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import TransitionAlerts, { ErrorAlert, SuccessAlert } from "./Fragments/Alert";
 
 const defaultFormFields = {
   email: "",
@@ -35,12 +36,14 @@ const defaultFormFields = {
 
 const theme = createTheme();
 
+
 export default function SignInWithFirebase() {
   const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
   const [userLoggedInData, setUserLoggedInData] = React.useState<
     null | any | UserInfo
@@ -60,7 +63,15 @@ export default function SignInWithFirebase() {
       setError("");
       setLoading(true);
       dispatch(emailSignInStart(email, password));
-      navigate("/");
+
+      if (!loggedInUser?.isAnonymous ){
+        setSuccess(true);
+        setTimeout(() => {
+          
+          navigate("/");
+        }, 10000)
+        return ;
+      }
       resetFormFields();
     } catch (error) {
       setError("Failed to Sign in");
@@ -79,9 +90,7 @@ export default function SignInWithFirebase() {
 
   const loggedInUser: any = useAuth();
 
-  //   if (loggedInUser?.isAnonymous ){
-  //     navigate("/");
-  //  }
+   
 
   React.useEffect(() => {
     setUserLoggedInData(loggedInUser);
@@ -117,6 +126,7 @@ export default function SignInWithFirebase() {
               alignItems: "center",
             }}
           >
+              <Typography component={'h2'} variant='h5'> {success? <SuccessAlert /> : (error ? <ErrorAlert error={error} />:  <TransitionAlerts success={success} error={error} />)} </Typography>
             <Tooltip
               title={
                 userLoggedInData
@@ -138,7 +148,7 @@ export default function SignInWithFirebase() {
                 </Avatar>
               </IconButton>
             </Tooltip>
-
+    
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
@@ -201,11 +211,11 @@ export default function SignInWithFirebase() {
                   }
                   alt="Google"
                 />
-                {loading ? (
+                {loading && !success? (
                   <CircularProgress color="inherit" />
-                ) : (
-                  " Sign In with Google"
-                )}
+                ) : ( " Sign In with Google"
+                   )
+                }
               </Button>
               <Grid container>
                 <Grid item xs>

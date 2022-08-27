@@ -1,16 +1,16 @@
-import RsuiteStepper from '../Components/Stepper/RsuiteStepper'
-import StepIndex from '../Components/Stepper/Custom';
-import SignInWithFirebase from '../Components/Authentication/SignInWithGoogleFirebase';
-import DynamicHome from '../Components/DynamicHome';
-import Contact from '../Components/Home/Contact';
-import ForgotPassword from '../Components/Authentication/ForgotPassword';
-import LogOut from '../Components/Authentication/LogOut';
-import Profile from '../Components/Authentication/Profile';
-import SignUp from '../Components/Authentication/SignUpWithFirebase';
-import UpdateProfile from '../Components/Authentication/UpdateProfile';
-import About from '../Components/Home/About';
-import Dashboard from '../Components/Home/Dashboard';
-import Login from '../Components/Authentication/LogInWithFirebase';
+import RsuiteStepper from '../../Components/Stepper/RsuiteStepper'
+import StepIndex from '../../Components/Stepper/Custom';
+import SignInWithFirebase from '../../Components/Authentication/SignInWithGoogleFirebase';
+import DynamicHome from '../../Components/DynamicHome';
+import Contact from '../../Components/Home/Contact';
+import ForgotPassword from '../../Components/Authentication/ForgotPassword';
+import LogOut from '../../Components/Authentication/LogOut';
+import Profile from '../../Components/Authentication/Profile';
+import SignUp from '../../Components/Authentication/SignUpWithFirebase';
+import UpdateProfile from '../../Components/Authentication/UpdateProfile';
+import About from '../../Components/Home/About';
+import Dashboard from '../../Components/Home/Dashboard';
+import Login from '../../Components/Authentication/LogInWithFirebase';
 // import ReactDOMServer from 'react-dom/server';
 // const element = <Login />
 

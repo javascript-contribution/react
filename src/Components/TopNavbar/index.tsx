@@ -26,6 +26,7 @@ import {
 } from "./Fragments/StyledWrapper";
 import { useAuth } from "../../Utils/Auth";
 import { UserInfo } from "firebase/auth";
+import { signOutUser } from "../../Utils/Firebase";
 
 const pages = ["Dashboard", "Micro-Services", "About"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -58,6 +59,20 @@ const TopAppBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const handleCloseUserMenuItem = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    if(event.currentTarget.innerText.toLowerCase() === 'logout') {
+      signOutUser();
+      navigate('/authenticate/sign-in-with-firebase');
+    } else if(event.currentTarget.innerText.toLowerCase() === 'account'){
+      navigate("/authenticate/" + event.currentTarget.innerText.toLowerCase())
+    } else if(event.currentTarget.innerText.toLowerCase() === 'profile'){
+      navigate('/authenticate/' + event.currentTarget.innerText.toLowerCase())
+    } else if(event.currentTarget.innerText.toLowerCase() === 'dashboard'){
+      navigate('/' + event.currentTarget.innerText.toLowerCase())
+    }
+    setAnchorElUser(null);
+  }
 
   const loggedInUser = useAuth() as unknown as UserInfo;
     React.useEffect(() => {
@@ -72,7 +87,7 @@ const TopAppBar = () => {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            onClick={()=> navigate('/')}
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -165,16 +180,17 @@ const TopAppBar = () => {
               />
             </Search>
           </Box>
+         
           <Tooltip
             title={
-              userLoggedInData ? userLoggedInData?.displayName : "Sign In or Sign Up"
+              userLoggedInData ? userLoggedInData?.displayName || userLoggedInData?.email: "Sign In or Sign Up"
             }
           >
-            <IconButton sx={{ p: 0 }}>
+            <IconButton sx={{ p: 0 }} onClick={() => navigate('/authenticate/profile')}>
               <Avatar sx={{ m: 2, bgcolor: "secondary.main" }}>
                 {loggedInUser ? (
                   <Avatar
-                    alt={userLoggedInData?.displayName}
+                    alt={userLoggedInData?.displayName || userLoggedInData?.email}
                     src={userLoggedInData?.photoURL}
                   />
                 ) : (
@@ -183,9 +199,10 @@ const TopAppBar = () => {
               </Avatar>
             </IconButton>
           </Tooltip>
+
           <Box sx={{ flexGrow: 0.1 }}>
             <Tooltip title={"Menu Bar"}>
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 1, margin: 1 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 1, margin: 1, color: 'white' }}>
                 <DashboardCustomizeRoundedIcon />
               </IconButton>
             </Tooltip>
@@ -207,7 +224,7 @@ const TopAppBar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={handleCloseUserMenuItem}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}

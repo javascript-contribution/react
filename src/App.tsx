@@ -27,9 +27,7 @@ export default function App() {
               <Route path={TREE[1].baseURL} element={TREE[1].component}>
                 <Route path={TREE[1].nestedComponent[1].url} element={TREE[1].nestedComponent[1].component} />
                 <Route path={TREE[1].nestedComponent[3].url} element={TREE[1].nestedComponent[3].component} />
-                <Route path={TREE[1].nestedComponent[4].url} element={TREE[1].nestedComponent[4].component} />
                 <Route path={TREE[1].nestedComponent[5].url} element={TREE[1].nestedComponent[5].component} />
-                <Route path={TREE[1].nestedComponent[6].url} element={TREE[1].nestedComponent[6].component} />
               </Route>
               <Route path={TREE[2].baseURL} element={TREE[2].component}>
                 <Route path={TREE[2].nestedComponent[0].url} element={TREE[2].nestedComponent[0].component} />
@@ -75,6 +73,8 @@ export default function App() {
             <Route>
               <Route path={TREE[1].nestedComponent[0].url} element={TREE[1].nestedComponent[0].component} />
               <Route path={TREE[1].nestedComponent[2].url} element={TREE[1].nestedComponent[2].component} />
+              <Route path={TREE[1].nestedComponent[4].url} element={TREE[1].nestedComponent[4].component} />
+              <Route path={TREE[1].nestedComponent[6].url} element={TREE[1].nestedComponent[6].component} />
             </Route>
           </Routes>
 
