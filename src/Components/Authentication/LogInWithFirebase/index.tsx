@@ -72,7 +72,7 @@ export default function Login() {
               />
             </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
-              {loading ? <CircularProgress color="inherit" /> : 'Log In'}
+              {loading ? <CircularProgress color="inherit" /> : "Log In"}
             </Button>
           </Form>
           <div className="w-100 text-center mt-3">
@@ -81,7 +81,7 @@ export default function Login() {
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        Need an account? <Link to="/authenticate/signup">Sign Up</Link>
+        Need an account? <Link to="/authenticate/sign-up">Sign Up</Link>
       </div>
     </>
   );

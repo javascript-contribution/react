@@ -7,7 +7,23 @@ import {
 
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Alert, Avatar, Box, Button, Checkbox, CircularProgress, CssBaseline, FormControlLabel, Grid, IconButton, Link, Paper, TextField, Tooltip, Typography } from "@mui/material";
+import {
+  Alert,
+  Avatar,
+  Box,
+  Button,
+  Checkbox,
+  CircularProgress,
+  CssBaseline,
+  FormControlLabel,
+  Grid,
+  IconButton,
+  Link,
+  Paper,
+  TextField,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { useAuth } from "../../../Utils/Auth";
 import { UserInfo } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -26,7 +42,9 @@ export default function SignInWithFirebase() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const [userLoggedInData, setUserLoggedInData] = React.useState<null | any | UserInfo>(null);
+  const [userLoggedInData, setUserLoggedInData] = React.useState<
+    null | any | UserInfo
+  >(null);
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
@@ -56,18 +74,18 @@ export default function SignInWithFirebase() {
   };
   const handleGoogleSignIn = () => {
     setLoading(true);
-    signInWithGoogle()
-  }
- 
-  const loggedInUser : any= useAuth()
+    signInWithGoogle();
+  };
 
-//   if (loggedInUser?.isAnonymous ){
-//     navigate("/");
-//  }
+  const loggedInUser: any = useAuth();
+
+  //   if (loggedInUser?.isAnonymous ){
+  //     navigate("/");
+  //  }
 
   React.useEffect(() => {
-    setUserLoggedInData(loggedInUser)
-}, [loggedInUser])
+    setUserLoggedInData(loggedInUser);
+  }, [loggedInUser]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -100,26 +118,27 @@ export default function SignInWithFirebase() {
             }}
           >
             <Tooltip
-            title={
-              userLoggedInData ? userLoggedInData?.displayName : userLoggedInData?.email
-            }
-          >
-            <IconButton sx={{ p: 0, margin: 2,}}>
-              <Avatar sx={{ m: 2, bgcolor: "secondary.main" }}>
-                {userLoggedInData ? (
-                  <Avatar
-                    alt={userLoggedInData?.displayName}
-                    src={userLoggedInData?.photoURL}
-                    sizes={'large'}
-                  />
-                ) : (
-                  <LockOutlinedIcon />
-                )}
-              </Avatar>
-            </IconButton>
-          </Tooltip>
+              title={
+                userLoggedInData
+                  ? userLoggedInData?.displayName
+                  : userLoggedInData?.email
+              }
+            >
+              <IconButton sx={{ p: 0, margin: 2 }}>
+                <Avatar sx={{ m: 2, bgcolor: "secondary.main" }}>
+                  {userLoggedInData ? (
+                    <Avatar
+                      alt={userLoggedInData?.displayName}
+                      src={userLoggedInData?.photoURL}
+                      sizes={"large"}
+                    />
+                  ) : (
+                    <LockOutlinedIcon />
+                  )}
+                </Avatar>
+              </IconButton>
+            </Tooltip>
 
-      
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
@@ -129,7 +148,7 @@ export default function SignInWithFirebase() {
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
-              {error && <Alert >{error}</Alert>}
+              {error && <Alert>{error}</Alert>}
               <TextField
                 margin="normal"
                 required
@@ -164,7 +183,7 @@ export default function SignInWithFirebase() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                {loading ? <CircularProgress color="inherit" /> : 'Sign In'} 
+                {loading ? <CircularProgress color="inherit" /> : "Sign In"}
               </Button>
 
               <Button
@@ -174,25 +193,34 @@ export default function SignInWithFirebase() {
                 type="button"
                 onClick={handleGoogleSignIn}
               >
-                
-                  <img
-                    width="40"
-                    height="40"
-                    src={
-                      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png"
-                    }
-                    alt="Google"
-                  />
-               {loading ? <CircularProgress color="inherit" /> : ' Sign In with Google'} 
+                <img
+                  width="40"
+                  height="40"
+                  src={
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png"
+                  }
+                  alt="Google"
+                />
+                {loading ? (
+                  <CircularProgress color="inherit" />
+                ) : (
+                  " Sign In with Google"
+                )}
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link onClick={() => navigate('/authenticate/forgot-password')} variant="body2">
+                  <Link
+                    onClick={() => navigate("/authenticate/forgot-password")}
+                    variant="body2"
+                  >
                     Forgot password?
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link onClick={() => navigate('/authenticate/signup')} variant="body2">
+                  <Link
+                    onClick={() => navigate("/authenticate/sign-up")}
+                    variant="body2"
+                  >
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

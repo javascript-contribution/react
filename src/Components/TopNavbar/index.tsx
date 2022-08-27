@@ -63,7 +63,6 @@ const TopAppBar = () => {
     React.useEffect(() => {
       setUserLoggedInData(loggedInUser)
   }, [loggedInUser])
-  console.log(loggedInUser)
   return (
     <AppBar position="fixed">
       <Container maxWidth="xl">

@@ -11,6 +11,8 @@ import UpdateProfile from '../Components/Authentication/UpdateProfile';
 import About from '../Components/Home/About';
 import Dashboard from '../Components/Home/Dashboard';
 import Login from '../Components/Authentication/LogInWithFirebase';
+// import ReactDOMServer from 'react-dom/server';
+// const element = <Login />
 
 const TREE = [
   { 
@@ -18,11 +20,13 @@ const TREE = [
     name: 'Home',
     baseURL : '/',
     component: <DynamicHome />, 
+    jsx: JSON.stringify(<DynamicHome />) ,
+    // jsx: ReactDOMServer.renderToStaticMarkup(element),
     description: 'John Snow is a legend',
     nestedComponent : [
       { 
         No: 0,
-        name: 'dashboard',
+        name: 'Dashboard',
         url: '/dashboard',
         description: '',
         imageURL: '',
@@ -30,7 +34,7 @@ const TREE = [
       },
       { 
         No: 1,
-        name: 'about',
+        name: 'About',
         url: '/about',
         description: '',
         imageURL: '',
@@ -55,7 +59,7 @@ const TREE = [
     nestedComponent : [
       { 
         No: 0,
-        name: 'sign-in-with-firebase',
+        name: 'Sign-in-with-firebase',
         url: '/authenticate/sign-in-with-firebase',
         description: '',
         imageURL: '',
@@ -63,7 +67,7 @@ const TREE = [
       },
       { 
         No: 1,
-        name: 'profile',
+        name: 'Profile',
         url: '/authenticate/profile',
         description: '',
         imageURL: '',
@@ -72,39 +76,39 @@ const TREE = [
       { 
         No: 2,
         name: 'Login',
-        url: '/authenticate/Login',
+        url: '/authenticate/login',
         description: '',
         imageURL: '',
         component: <Login />
       },
       { 
         No: 3,
-        name: 'LogOut',
-        url: '/authenticate/LogOut',
+        name: 'Log Out',
+        url: '/authenticate/log-out',
         description: '',
         imageURL: '',
         component: <LogOut />
       },
       { 
         No: 4,
-        name: 'SignUp',
-        url: '/authenticate/SignUp',
+        name: 'Sign Up',
+        url: '/authenticate/sign-up',
         description: '',
         imageURL: '',
         component: <SignUp />
       },
       { 
         No: 5,
-        name: 'UpdateProfile',
-        url: '/authenticate/UpdateProfile',
+        name: 'Update Profile',
+        url: '/authenticate/update-profile',
         description: '',
         imageURL: '',
         component: <UpdateProfile />
       },
       { 
         No: 6,
-        name: 'ForgotPassword',
-        url: '/authenticate/ForgotPassword',
+        name: 'Forgot Password',
+        url: '/authenticate/forgot-password',
         description: '',
         imageURL: '',
         component: <ForgotPassword />
@@ -121,7 +125,7 @@ const TREE = [
       { 
         No: 0,
         name: 'React Hook Form',
-        url: '/form/React Hook Form',
+        url: '/form/react-hook-form',
         description: '',
         imageURL: '',
         component: ''
@@ -129,7 +133,7 @@ const TREE = [
       { 
         No: 1,
         name: 'Redux Form',
-        url: '/form/Redux Form',
+        url: '/form/redux-form',
         description: '',
         imageURL: '',
         component: ''
@@ -137,7 +141,7 @@ const TREE = [
       { 
         No: 2,
         name: 'Formik',
-        url: '/form/Formik',
+        url: '/form/formik',
         description: '',
         imageURL: '',
         component: ''
@@ -154,7 +158,7 @@ const TREE = [
       { 
         No: 0,
         name: 'Audio Chat',
-        url: '/chat-box/Audio Chat',
+        url: '/chat-box/audio-chat',
         description: '',
         imageURL: '',
         component: ''
@@ -162,7 +166,7 @@ const TREE = [
       { 
         No: 1,
         name: 'Video Chat',
-        url: '/chat-box/Video Chat',
+        url: '/chat-box/video-chat',
         description: '',
         imageURL: '',
         component: ''
@@ -170,7 +174,7 @@ const TREE = [
       { 
         No: 2,
         name: 'Chat Ui with some library',
-        url: '/chat-box/Chat Ui with some library',
+        url: '/chat-box/chat-ui-with-some-library',
         description: '',
         imageURL: '',
         component: ''
@@ -178,7 +182,7 @@ const TREE = [
       { 
         No: 3,
         name: 'Custom Chat Ui',
-        url: '/chat-box/Custom Chat Ui',
+        url: '/chat-box/custom-chat-ui',
         description: '',
         imageURL: '',
         component: ''
@@ -195,7 +199,7 @@ const TREE = [
       { 
         No: 0,
         name: 'Video Player with some Library',
-        url: '/video-box/Video Player with some Library',
+        url: '/video-box/video-player-with-some-library',
         description: '',
         imageURL: '',
         component: ''
@@ -203,7 +207,7 @@ const TREE = [
       { 
         No: 1,
         name: 'Video Chat',
-        url: '/video-box/Video Chat',
+        url: '/video-box/video-chat',
         description: '',
         imageURL: '',
         component: ''
@@ -211,7 +215,7 @@ const TREE = [
       { 
         No: 2,
         name: 'Custom Video Player',
-        url: '/video-box/Custom Video Player',
+        url: '/video-box/custom-video-player',
         description: '',
         imageURL: '',
         component: ''
@@ -228,7 +232,7 @@ const TREE = [
       { 
         No: 0,
         name: 'Custom Chart',
-        url: '/chart/Custom Chart',
+        url: '/chart/custom-chart',
         description: '',
         imageURL: '',
         component: ''
@@ -236,7 +240,7 @@ const TREE = [
       { 
         No: 1,
         name: 'Charts with some library',
-        url: '/chart/Charts with some library',
+        url: '/chart/charts-with-some-library',
         description: '',
         imageURL: '',
         component: ''
@@ -253,7 +257,7 @@ const TREE = [
       { 
         No: 0,
         name: 'Simple Calculator',
-        url: '/calculator/Simple Calculator',
+        url: '/calculator/simple-calculator',
         description: '',
         imageURL: '',
         component: ''
@@ -261,7 +265,7 @@ const TREE = [
       { 
         No: 1,
         name: 'BMI',
-        url: '/calculator/BMI',
+        url: '/calculator/bmi',
         description: '',
         imageURL: '',
         component: ''
@@ -269,7 +273,7 @@ const TREE = [
       { 
         No: 2,
         name: 'Scientific Calculator',
-        url: '/calculator/Scientific Calculator',
+        url: '/calculator/scientific-calculator',
         description: '',
         imageURL: '',
         component: ''
@@ -277,7 +281,7 @@ const TREE = [
       { 
         No: 3,
         name: 'Chemical Calculator',
-        url: '/calculator/Chemical Calculator',
+        url: '/calculator/chemical-calculator',
         description: '',
         imageURL: '',
         component: ''
@@ -285,7 +289,7 @@ const TREE = [
       { 
         No: 4,
         name: 'Custom Calculator',
-        url: '/calculator/Custom Calculator',
+        url: '/calculator/custom-calculator',
         description: '',
         imageURL: '',
         component: ''
@@ -302,7 +306,7 @@ const TREE = [
       { 
         No: 0,
         name: 'Custom Pagination with some library',
-        url: '/pagination/Custom Pagination with some library',
+        url: '/pagination/custom-pagination-with-some-library',
         description: '',
         imageURL: '',
         component: ''
@@ -310,7 +314,7 @@ const TREE = [
       { 
         No: 1,
         name: 'Pagination with Backend',
-        url: '/pagination/Pagination with Backend',
+        url: '/pagination/pagination-with-backend',
         description: '',
         imageURL: '',
         component: ''
@@ -329,7 +333,7 @@ const TREE = [
       { 
         No: 0,
         name: 'Zustang',
-        url: '/manage-state/Zustang',
+        url: '/manage-state/zustang',
         description: '',
         imageURL: '',
         component: ''
@@ -337,7 +341,7 @@ const TREE = [
       { 
         No: 1,
         name: 'Jotai',
-        url: '/manage-state/Jotai',
+        url: '/manage-state/jotai',
         description: '',
         imageURL: '',
         component: ''
@@ -354,7 +358,7 @@ const TREE = [
       { 
         No: 0,
         name: 'Custom Stepper',
-        url: '/stepper/Custom Stepper',
+        url: '/stepper/custom-stepper',
         description: '',
         imageURL: '',
         component: <StepIndex />
@@ -362,7 +366,7 @@ const TREE = [
       { 
         No: 1,
         name: 'Rsuite Stepper',
-        url: '/stepper/Rsuite Stepper',
+        url: '/stepper/rsuite-stepper',
         description: '',
         imageURL: '',
         component: <RsuiteStepper />

@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TREE from "./Utils/Routes";
-import AppBar from "./Components/TopBar";
+import AppBar from "./Components/TopNavbar";
 import SideBar from "./Components/SideBar";
 import BottomBar from "./Components/BottomBar";
 import EditSpeedDial from "./Components/EditSpeedDial";
@@ -18,7 +18,6 @@ export default function App() {
         <div className={"components"}>
 
           <Routes>
-
             <Route element={<PrivateRoutes />}>
               <Route path={TREE[0].baseURL} element={TREE[0].component}>
                 <Route path={TREE[0].nestedComponent[0].url} element={TREE[0].nestedComponent[0].component} />
