@@ -13,7 +13,7 @@ const DynamicHome = () => {
     setValue(newValue);
   };
   if (dynamic === undefined) {
-    const nestedRouteComponent = TREE.filter((ele) => ele.nestedComponent.some((nested) => nested.url.includes(location.pathname)))
+    const nestedRouteComponent = TREE.filter((ele) => ele.nestedComponent.some((nested: { url: string | string[]; }) => nested.url.includes(location.pathname)))
     // @ts-ignore
     const nest = nestedRouteComponent.map(path => path.nestedComponent)[0].filter((a: { url: string; }) => a.url === location.pathname)
     return nest[0].component;

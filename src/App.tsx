@@ -7,8 +7,8 @@ import BottomBar from "./Components/BottomBar";
 import EditSpeedDial from "./Components/EditSpeedDial";
 import { Box } from "@mui/material";
 import PrivateRoutes from "./Components/Authentication/PrivateRoutes";
-import "./Styles/App.css";
 import PageNotFound from "./Components/PageNotFound";
+import "./Styles/App.css";
 
 export default function App() {
   return (
