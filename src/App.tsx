@@ -8,6 +8,7 @@ import EditSpeedDial from "./Components/EditSpeedDial";
 import { Box } from "@mui/material";
 import PrivateRoutes from "./Components/Authentication/PrivateRoutes";
 import "./Styles/App.css";
+import PageNotFound from "./Components/PageNotFound";
 
 export default function App() {
   return (
@@ -75,6 +76,7 @@ export default function App() {
               <Route path={TREE[1].nestedComponent[2].url} element={TREE[1].nestedComponent[2].component} />
               <Route path={TREE[1].nestedComponent[4].url} element={TREE[1].nestedComponent[4].component} />
               <Route path={TREE[1].nestedComponent[6].url} element={TREE[1].nestedComponent[6].component} />
+              <Route path={'*'} element={<PageNotFound />} />
             </Route>
           </Routes>
 

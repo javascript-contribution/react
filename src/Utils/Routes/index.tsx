@@ -12,7 +12,7 @@ import About from '../../Components/Home/About';
 import Dashboard from '../../Components/Home/Dashboard';
 import Login from '../../Components/Authentication/LogInWithFirebase';
 // import ReactDOMServer from 'react-dom/server';
-// const element = <Login />
+const element = <Login />
 
 const TREE = [
   { 
