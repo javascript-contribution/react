@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  web:
+    build: ./.docker/nginx
+    ports:
+      - "80:80"
+      - "8443:443"
+    depends_on:
+      - app
+
+  app:
+    build:
+      context: .
+      dockerfile: ./.docker/app/Dockerfile
+    volumes:
+      - .:/app
+    env_file:
+      - ./.env
