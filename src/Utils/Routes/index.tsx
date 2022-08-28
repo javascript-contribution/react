@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
 const RsuiteStepper = lazy( () => import('../../Components/Stepper/RsuiteStepper'));
 const StepIndex = lazy( () => import('../../Components/Stepper/Custom'));
 const SignInWithFirebase = lazy( () => import('../../Components/Authentication/SignInWithGoogleFirebase'));
@@ -20,7 +20,7 @@ const TREE = [
     id: 0,
     name: 'Home',
     baseURL : '/',
-    component:  ( <Suspense fallback={<>...</>}><DynamicHome /></Suspense> ), 
+    component:  <DynamicHome />, 
     jsx: JSON.stringify(<DynamicHome />) ,
     // jsx: ReactDOMServer.renderToStaticMarkup(element),
     description: 'John Snow is a legend',
@@ -31,7 +31,7 @@ const TREE = [
         url: '/dashboard',
         description: '',
         imageURL: '',
-        component:  ( <Suspense fallback={<>...</>}><Dashboard /></Suspense> )
+        component:  <Dashboard />
       },
       { 
         No: 1,
@@ -39,7 +39,7 @@ const TREE = [
         url: '/about',
         description: '',
         imageURL: '',
-        component:  ( <Suspense fallback={<>...</>}><About /></Suspense> ) 
+        component:  <About /> 
       },
       { 
         No: 2,
@@ -47,7 +47,7 @@ const TREE = [
         url: '/contact-us',
         description: '',
         imageURL: '',
-        component:  ( <Suspense fallback={<>...</>}><Contact /></Suspense> )
+        component:  <Contact />
       }
     ]
   },
@@ -55,7 +55,7 @@ const TREE = [
     id: 1,
     name: 'Authenticate',
     baseURL : '/authenticate/',
-    component:  ( <Suspense fallback={<>...</>}><DynamicHome /></Suspense> ), 
+    component:  <DynamicHome />, 
     description: '',
     nestedComponent : [
       { 
@@ -64,7 +64,7 @@ const TREE = [
         url: '/authenticate/sign-in-with-firebase',
         description: '',
         imageURL: '',
-        component: ( <Suspense fallback={<>...</>}><SignInWithFirebase /></Suspense> ) 
+        component: <SignInWithFirebase /> 
       },
       { 
         No: 1,
@@ -72,7 +72,7 @@ const TREE = [
         url: '/authenticate/profile',
         description: '',
         imageURL: '',
-        component:  ( <Suspense fallback={<>...</>}><Profile /></Suspense> ) 
+        component:  <Profile /> 
       },
       { 
         No: 2,
@@ -80,7 +80,7 @@ const TREE = [
         url: '/authenticate/login',
         description: '',
         imageURL: '',
-        component:  ( <Suspense fallback={<>...</>}><Login /></Suspense> )
+        component:  <Login />
       },
       { 
         No: 3,
@@ -88,7 +88,7 @@ const TREE = [
         url: '/authenticate/log-out',
         description: '',
         imageURL: '',
-        component:  ( <Suspense fallback={<>...</>}><LogOut /></Suspense> )
+        component:  <LogOut />
       },
       { 
         No: 4,
@@ -96,7 +96,7 @@ const TREE = [
         url: '/authenticate/sign-up',
         description: '',
         imageURL: '',
-        component: ( <Suspense fallback={<>...</>}><SignUp /></Suspense> ) 
+        component: <SignUp /> 
       },
       { 
         No: 5,
@@ -104,7 +104,7 @@ const TREE = [
         url: '/authenticate/update-profile',
         description: '',
         imageURL: '',
-        component:  ( <Suspense fallback={<>...</>}><UpdateProfile /></Suspense> )
+        component:  <UpdateProfile />
       },
       { 
         No: 6,
@@ -112,7 +112,7 @@ const TREE = [
         url: '/authenticate/forgot-password',
         description: '',
         imageURL: '',
-        component:  ( <Suspense fallback={<>...</>}><ForgotPassword /></Suspense> )
+        component:  <ForgotPassword />
       },
     ]
   },
@@ -120,7 +120,7 @@ const TREE = [
     id: 2,
     name: 'Forms',
     baseURL : '/form/',
-    component:  ( <Suspense fallback={<>...</>}><DynamicHome /></Suspense> ) , 
+    component:  <DynamicHome /> , 
     description: '',
     nestedComponent : [
       { 
@@ -153,7 +153,7 @@ const TREE = [
     id: 3,
     name: 'Chat Box',
     baseURL : '/chat-box/',
-    component:  ( <Suspense fallback={<>...</>}><DynamicHome /></Suspense> ), 
+    component:  <DynamicHome />, 
     description: 'We want an abstracted Chat Service with a well defined interface that can be consumed by any chat like experience',
     nestedComponent : [
       { 
@@ -194,7 +194,7 @@ const TREE = [
     id: 4,
     name: 'Video Box',
     baseURL : '/video-box/',
-    component:  ( <Suspense fallback={<>...</>}><DynamicHome /></Suspense> ), 
+    component:  <DynamicHome />, 
     description: '',
     nestedComponent : [
       { 
@@ -227,7 +227,7 @@ const TREE = [
     id: 5,
     name: 'Chart',
     baseURL : '/chart/',
-    component:  ( <Suspense fallback={<>...</>}><DynamicHome /></Suspense> ), 
+    component:  <DynamicHome />, 
     description: '',
     nestedComponent : [
       { 
@@ -252,7 +252,7 @@ const TREE = [
     id: 6,
     name: 'Calculator',
     baseURL : '/calculator/',
-    component:  ( <Suspense fallback={<>...</>}><DynamicHome /></Suspense> ), 
+    component:  <DynamicHome />, 
     description: '',
     nestedComponent : [
       { 
@@ -301,7 +301,7 @@ const TREE = [
     id: 7,
     name: 'pagination',
     baseURL : '/pagination/',
-    component:  ( <Suspense fallback={<>...</>}><DynamicHome /></Suspense> ), 
+    component:  <DynamicHome />, 
     description: '',
     nestedComponent : [
       { 
@@ -326,7 +326,7 @@ const TREE = [
     id: 8,
     name: 'State Management',
     baseURL : '/manage-state/',
-    component:  ( <Suspense fallback={<>...</>}><DynamicHome /></Suspense> ),
+    component:  <DynamicHome />,
     description: `React components have a built-in state object. The state is encapsulated data where you store assets that are persistent between component renderings.
 
     The state is just a fancy term for a JavaScript data structure. If a user changes state by interacting with your application, the UI may look completely different afterwards, because it's represented by this new state rather than the old state.`,
@@ -353,7 +353,7 @@ const TREE = [
     id: 9,
     name: 'Stepper',
     baseURL : '/stepper/',
-    component:  ( <Suspense fallback={<>...</>}><DynamicHome /></Suspense> ),
+    component:  <DynamicHome />,
     description: 'Customized and simple "Steppers" display progress through a sequence of logical and numbered steps. They may also be used for navigation. For those who wants to use third party library for stepper, can follow this link :  https://mui.com/material-ui/react-stepper/',
     nestedComponent : [
       { 
@@ -362,7 +362,7 @@ const TREE = [
         url: '/stepper/custom-stepper',
         description: '',
         imageURL: '',
-        component:  ( <Suspense fallback={<>...</>}><StepIndex /></Suspense> ),
+        component:  <StepIndex />,
       },
       { 
         No: 1,
@@ -370,7 +370,7 @@ const TREE = [
         url: '/stepper/rsuite-stepper',
         description: '',
         imageURL: '',
-        component:  ( <Suspense fallback={<>...</>}><RsuiteStepper /></Suspense> ),
+        component:  <RsuiteStepper />,
       },
     ]
   },

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TREE from "./Utils/Routes";
 import AppBar from "./Components/TopNavbar";
@@ -8,6 +8,7 @@ import EditSpeedDial from "./Components/EditSpeedDial";
 import { Box } from "@mui/material";
 import PrivateRoutes from "./Components/Authentication/PrivateRoutes";
 import PageNotFound from "./Components/PageNotFound";
+import CircularProgress from '@mui/material/CircularProgress';
 import "./Styles/App.css";
 
 export default function App() {
@@ -17,7 +18,7 @@ export default function App() {
         <AppBar />
         <SideBar />
         <div className={"components"}>
-
+        <Suspense fallback={<CircularProgress color="inherit" />}>
           <Routes>
             <Route element={<PrivateRoutes />}>
               <Route path={TREE[0].baseURL} element={TREE[0].component}>
@@ -79,7 +80,7 @@ export default function App() {
               <Route path={'*'} element={<PageNotFound />} />
             </Route>
           </Routes>
-
+          </Suspense>
         </div>
         <EditSpeedDial />
         <BottomBar />
