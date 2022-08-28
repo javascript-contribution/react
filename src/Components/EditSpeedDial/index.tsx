@@ -21,7 +21,7 @@ export default function EditSpeedDial() {
     <Box sx={{ height: 320, transform: 'translateZ(0px)', flexGrow: 1 }}>
       <SpeedDial
         ariaLabel="SpeedDial openIcon example"
-        sx={{ position: 'absolute', top: 260, right: 10 }}
+        sx={{ position: 'absolute', top: 260, right: 35 }}
         icon={<SpeedDialIcon openIcon={<EditIcon />} />}
       >
         {actions.map((action) => (
