@@ -1,7 +1,7 @@
 import { lazy } from "react";
 import ErrorBoundary from "../ErrorBoundary/Custom";
 const RsuiteStepper = lazy( () => import('../../Components/Stepper/RsuiteStepper'));
-const StepIndex = lazy( () => import('../../Components/Stepper/Custom'));
+const StepIndex = lazy( () => import('../../Components/Stepper/CustomStepper'));
 const SignInWithFirebase = lazy( () => import('../../Components/Authentication/SignInWithGoogleFirebase'));
 const DynamicHome = lazy( () => import('../../Components/DynamicHome'));
 const Contact = lazy( () => import('../../Components/Home/Contact'));
