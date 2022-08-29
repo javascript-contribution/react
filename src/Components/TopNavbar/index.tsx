@@ -19,7 +19,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import RightDrawer from "./Fragments/RightDrawer";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useNavigate } from "react-router";
-import ErrorBoundary from "../../Utils/ErrorBoundary/Custom";
 import { useAuth } from "../../Utils/Auth";
 import { signOutUser } from "../../Utils/Firebase";
 import { UserInfo } from "firebase/auth";
@@ -83,8 +82,6 @@ const TopAppBar = () => {
       <Container maxWidth="xl">
         <Toolbar>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          
-          {/* @ts-ignore */}
           <Typography
             variant="h6"
             noWrap
