@@ -1,4 +1,5 @@
 import { lazy } from "react";
+import ErrorBoundary from "../ErrorBoundary/Custom";
 const RsuiteStepper = lazy( () => import('../../Components/Stepper/RsuiteStepper'));
 const StepIndex = lazy( () => import('../../Components/Stepper/Custom'));
 const SignInWithFirebase = lazy( () => import('../../Components/Authentication/SignInWithGoogleFirebase'));
@@ -31,7 +32,7 @@ const TREE = [
         url: '/dashboard',
         description: '',
         imageURL: '',
-        component:  <Dashboard />
+        component:  <ErrorBoundary component={'Dashboard'}> <Dashboard /></ErrorBoundary>
       },
       { 
         No: 1,
