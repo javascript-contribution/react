@@ -2,7 +2,6 @@
 
 react-template-components will have templates for all javascript users and contributors. Anyone who wants to refer the work or code for their future projects, can do that by just cloning or downloading zip files. This will be shared work with all contributors. Github could be used as a common platform for depositing individual’s valuable input on any framework or mostly into js dependencies libraries.
 
-## Click Deployed Version here => https://react-js-template.netlify.app/
 # Process to be followed:
 
 Clone the public or private srijan depository
@@ -33,6 +32,23 @@ src/Styles                                                              => Maint
 src/Testing                                                             => Maintain all test files here
 src/Types                                                               => Use folder for all typescript export
 src/Utils                                                               => Use this as your normal utility; also use this for routing
+
+## Stacks
+- ✅ TypeScript
+- ✅ React v18
+- ✅ Firebase
+- ✅ React Router v6
+- ✅ MUI v5
+- ✅ Progressive Web App (PWA)
+- ✅ SASS
+- ✅ Bootstrap
+- ✅ Redux-Saga
+- ✅ Redux-ToolKit
+- ✅ Circle CI
+- ✅ Netlify Deploy (https://react-js-template.netlify.app/)
+- ✅ react-query
+- ✅ react-hook-form
+- ✅ Error Boundaries
 # Branch Structure
 
 Never push changes to the master branch always check-out a branch and raise a PR.

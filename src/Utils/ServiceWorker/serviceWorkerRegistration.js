@@ -19,7 +19,7 @@ const isLocalhost = Boolean(
   );
   
   export function register(config) {
-    if ((process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development') && 'serviceWorker'  in navigator) {
+    if (process.env.NODE_ENV === 'production' && 'serviceWorker'  in navigator) {
       // The URL constructor is available in all browsers that support SW.
       const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
       if (publicUrl.origin !== window.location.origin) {
@@ -52,8 +52,8 @@ const isLocalhost = Boolean(
     }
 
     if (navigator.serviceWorker) {
-      navigator.serviceWorker.register('/src/Utils/ServiceWorker/service-worker.js').then(function(registration) {
-        console.log('ServiceWorker registration successful with scope:',  registration.scope);
+      navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+        console.log('ServiceWorker registration successful with scope:', registration.scope);
       }).catch(function(error) {
         console.log('ServiceWorker registration failed:', error);
       });
