@@ -7,6 +7,7 @@ import { store } from './Redux/Store';
 import reportWebVitals, {sendToAnalytics} from './Performance/reportWebVitals';
 import * as ServiceWorker from './Utils/ServiceWorker/serviceWorkerRegistration';
 import "bootstrap/dist/css/bootstrap.min.css"
+import { register } from './Utils/ServiceWorker/serviceWorkerRegistration';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -14,12 +15,12 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-    <App />
+     <App />
     </Provider>
   </React.StrictMode>
 );
 
-ServiceWorker.unregister();
+register();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

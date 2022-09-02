@@ -43,7 +43,7 @@ registerRoute(
 
     return true;
   },
-  createHandlerBoundToURL(process.env.PUBLIC_URL + '/index.html')
+  createHandlerBoundToURL(process.env.PUBLIC_URL + './public/index.html')
 );
 
 // An example runtime caching route for requests that aren't handled by the
@@ -70,24 +70,37 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+// const CACHE_NAME = 'offline';
 const CACHE_NAME = "version-1"
-const urlsToCache = ["index.html", "offline.html"]
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      console.log('Opened Cache')
-      return cache.addAll(urlsToCache)
-    })
-  )
-});
+const OFFLINE_URL = './public/index.html';
+const OFFLINE_CACHE = 'Offline_Cache'
+const urlsToCache = [
+  "/public/index.html",
+  "/public/offline.html",
+  "/",
+  "/src/index.tsx",
+  "/src/App.tsx",
+  "/Styles/index.css",
+  "/Styles/App.css",
+  "/Assests/logo.svg",
+  "/Assests/maskable_icon.png",
+ 
+  "/src/Components/Home/About/index.tsx",
+  "/src/Components/Home/Contact/index.tsx",
+  "/src/Components/Home/Dashboard/index.tsx",
+  "/src/Components/BottomBar/index.tsx",
+  "/src/Components/TopNavbar/index.tsx",
+  "/src/Components/Authentication/Profile/index.tsx",
+  "/src/Components/Authentication/LogOut/index.tsx",
+  "/src/Components/Authentication/LogInWithFirebase/index.tsx",
+  "/src/Components/Authentication/SignUpWithFirebase/index.tsx",
+  "/src/Components/Authentication/UpdateProfile/index.tsx",
+]
 
-self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches.match(event.request).then((response) => {
-      return fetch(event.request).catch(() => caches.match("offline.html"))
-    })
-    )
-});
+
+
+
+
 
 self.addEventListener("activate", (event) => {
   const cacheWhiteList = []
@@ -102,67 +115,55 @@ self.addEventListener("activate", (event) => {
 });
 
 
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches
+      .open(CACHE_NAME)
+      .then((cache) => {
+        console.log('Opened Cache')
+        return cache.addAll(urlsToCache)
+      }
+      )
+  );
+});
+
+self.addEventListener('fetch', (event) => {
+  // We only want to call event.respondWith() if this is a GET request for an HTML document.
+  if (event.request.method === 'GET' &&
+      event.request.headers.get('accept').includes('text/javascript')) {
+    console.log('Handling fetch event for', event.request.url);
+    event.respondWith(
+      fetch(event.request).catch((e) => {
+        console.error('Fetch failed; returning offline page instead.', e);
+        return caches.open(OFFLINE_CACHE).then((cache) => cache.match('./index.tsx'));
+      })
+    );
+  }
+});
 
 
+// self.addEventListener("fetch", (event) => {
+//   event.respondWith(
+//     caches.match(event.request).then((response) => {
+//       // caches.match() always resolves
+//       // but in case of success response will have value
+//       if (response !== undefined) {
+//         return response;
+//       } else {
+//         return fetch(event.request)
+//           .then((response) => {
+//             // response may be used only once
+//             // we need to save clone to put one copy in cache
+//             // and serve second one
+//             let responseClone = response.clone();
 
-
-
-
-
-
-
-
-
-
-// const CACHE_NAME = 'offline';
-// const OFFLINE_URL = 'offline.html';
-
-// self.addEventListener('install', function(event) {
-//   console.log('[ServiceWorker] Install');
-  
-//   event.waitUntil((async () => {
-//     const cache = await caches.open(CACHE_NAME);
-//     // Setting {cache: 'reload'} in the new request will ensure that the response
-//     // isn't fulfilled from the HTTP cache; i.e., it will be from the network.
-//     await cache.add(new Request(OFFLINE_URL, {cache: 'reload'}));
-//   })());
-  
-//   self.skipWaiting();
-// });
-
-// self.addEventListener('activate', (event) => {
-//   console.log('[ServiceWorker] Activate');
-//   event.waitUntil((async () => {
-//     // Enable navigation preload if it's supported.
-//     // See https://developers.google.com/web/updates/2017/02/navigation-preload
-//     if ('navigationPreload' in self.registration) {
-//       await self.registration.navigationPreload.enable();
-//     }
-//   })());
-
-//   // Tell the active service worker to take control of the page immediately.
-//   self.clients.claim();
-// });
-
-// self.addEventListener('fetch', function(event) {
-//   // console.log('[Service Worker] Fetch', event.request.url);
-//   if (event.request.mode === 'navigate') {
-//     event.respondWith((async () => {
-//       try {
-//         const preloadResponse = await event.preloadResponse;
-//         if (preloadResponse) {
-//           return preloadResponse;
-//         }
-
-//         const networkResponse = await fetch(event.request);
-//         return networkResponse;
-//       } catch (error) {
-//         console.log('[Service Worker] Fetch failed; returning offline page instead.', error);
-
-//         const cache = await caches.open(CACHE_NAME);
-//         const cachedResponse = await cache.match(OFFLINE_URL);
-//         return cachedResponse;
+//             caches.open(CACHE_NAME).then((cache) => {
+//               cache.put(event.request, responseClone);
+//             });
+//             return response;
+//           })
+//           .catch(() => caches.match("../public/index.html"));
 //       }
-//     })());
-//   }
+//     })
+//   );
 // });
