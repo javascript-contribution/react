@@ -14,6 +14,9 @@ interface ErrorProps {
 interface ErrorState {
   hasError: boolean;
   errorInfo: string;
+  error: {
+    message: string;
+  } | undefined;
 }
 
 export default class ErrorBoundary extends Component<
@@ -22,7 +25,7 @@ export default class ErrorBoundary extends Component<
 > {
   constructor(props: ErrorProps) {
     super(props);
-    this.state = { hasError: false, errorInfo: '' };
+    this.state = { hasError: false, errorInfo: '', error: { message : ''} };
   }
 
 
@@ -33,8 +36,15 @@ export default class ErrorBoundary extends Component<
   }
 
   componentDidCatch(error: any, errorInfo: any) {
-    this.setState({ errorInfo });
-    console.log(` Reached componentDidCatch ${errorInfo} and error.message ${error.message} and error ${error} `);
+    if(error){
+      this.setState({error})
+    } else {
+      this.setState({ errorInfo });
+    }
+    console.log(` Reached componentDidCatch :
+    1.) ErrorInfo: ${JSON.stringify(errorInfo)} 
+    2.) error.message :${error.message} 
+    3.) error :${error} `);
   }
 
 
@@ -70,7 +80,7 @@ export default class ErrorBoundary extends Component<
                   Something went wrong at {`<${this.props.component} />`}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {JSON.stringify(this.state.errorInfo)}
+                  {this.state.error? this.state.error.message : JSON.stringify(this.state.errorInfo)}
                 </Typography>
               </CardContent>
             </CardActionArea>

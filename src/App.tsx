@@ -66,6 +66,7 @@ export default function App() {
                 <Route path={TREE[8].baseURL} element={TREE[8].component}>
                   <Route path={TREE[8].nestedComponent[0].url} element={TREE[8].nestedComponent[0].component} />
                   <Route path={TREE[8].nestedComponent[1].url} element={TREE[8].nestedComponent[1].component} />
+                  <Route path={TREE[8].nestedComponent[2].url} element={TREE[8].nestedComponent[2].component} />
                 </Route>
                 <Route path={TREE[9].baseURL} element={TREE[9].component}>
                   <Route path={TREE[9].nestedComponent[0].url} element={TREE[9].nestedComponent[0].component} />
