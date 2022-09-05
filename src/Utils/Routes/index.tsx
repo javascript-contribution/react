@@ -1,5 +1,6 @@
 import { lazy } from "react";
 import ErrorBoundary from "../ErrorBoundary/CustomReactErrorBoundary";
+const ReactQuery = lazy(() => import('../../Components/StateManagement/ReactQuery'));
 const RsuiteStepper = lazy(() => import('../../Components/Stepper/RsuiteStepper'));
 const StepIndex = lazy(() => import('../../Components/Stepper/CustomStepper'));
 const SignInWithFirebase = lazy(() => import('../../Components/Authentication/SignInWithGoogleFirebase'));
@@ -357,6 +358,15 @@ const TREE = [
         imageURL: '',
         component: ''
       },
+      {
+        No: 2,
+        name: 'React-Query',
+        url: '/manage-state/react-query-v3',
+        description: '',
+        imageURL: '',
+        component: <ErrorBoundary component={'ReactQuery'} size={''}> <ReactQuery /></ErrorBoundary>,
+      },
+      
     ]
   },
   {
@@ -387,3 +397,4 @@ const TREE = [
 ]
 
 export default TREE;
+

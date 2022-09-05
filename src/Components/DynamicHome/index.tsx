@@ -4,7 +4,7 @@ import TREE from '../../Utils/Routes';
 import Box from '@mui/material/Box';
 import TabPanel, { StyledTab, StyledTabs, a11yProps } from './Fragments';
 
-const DynamicHome = () => {
+function DynamicHome () {
   const location = useLocation();
   const dynamic = TREE.filter(path => path.baseURL === location.pathname)[0]
   const [value, setValue] = React.useState(0);
@@ -16,10 +16,11 @@ const DynamicHome = () => {
     const nestedRouteComponent = TREE.filter((ele) => ele.nestedComponent.some((nested: { url: string | string[]; }) => nested.url.includes(location.pathname)))
     // @ts-ignore
     const nest = nestedRouteComponent.map(path => path.nestedComponent)[0].filter((a: { url: string; }) => a.url === location.pathname)
-    return nest[0].component;
+    return <> {nest[0].component}</>;
   }
 
   return (
+    <>
     <Box sx={{ bgcolor: '#2e1534', width: '164%', height: '120%', color: '#fff', padding: 2 }}>
       <h1>{dynamic.name}</h1>
       <StyledTabs
@@ -44,6 +45,7 @@ const DynamicHome = () => {
 
       <Outlet />
     </Box>
+    </>
   )
 }
 
