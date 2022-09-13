@@ -1,6 +1,6 @@
 import React from 'react'
 import { Outlet, useLocation } from "react-router-dom";
-import TREE from '../../Utils/Routes';
+import TREE from '../../Routes';
 import Box from '@mui/material/Box';
 import TabPanel, { StyledTab, StyledTabs, a11yProps } from './Fragments';
 

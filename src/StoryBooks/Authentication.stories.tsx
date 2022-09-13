@@ -21,6 +21,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TransitionAlerts, { ErrorAlert, SuccessAlert } from "../Components/Authentication/SignInWithGoogleFirebase/Fragments/Alert";
 import { UserInfo } from "firebase/auth";
+// @ts-ignore
 import {withA11y}  from '@storybook/addon-a11y'
 
 export default {

@@ -3,6 +3,7 @@ import About from '../Components/Home/About/index';
 import Contact from '../Components/Home/Contact';
 import Dashboard from '../Components/Home/Dashboard';
 import ErrorBoundaryTest from '../Components/Home/ErrorBoundaryTest';
+// @ts-ignore
 import {withA11y}  from '@storybook/addon-a11y'
 import ErrorBoundary from '../Utils/ErrorBoundary/CustomReactErrorBoundary';
 

@@ -8,7 +8,7 @@ import {
   AccordionDetails,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import TREE  from "../../Utils/Routes";
+import TREE  from "../../Routes";
 
 const SideBar = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);

@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import TREE from "./Utils/Routes";
+import TREE from "./Routes";
 import TopNavbar from "./Components/TopNavbar";
 import SideBar from "./Components/SideBar";
 import BottomBar from "./Components/BottomBar";
