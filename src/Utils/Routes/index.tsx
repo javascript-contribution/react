@@ -1,8 +1,10 @@
 import { lazy } from "react";
 import ErrorBoundary from "../ErrorBoundary/CustomReactErrorBoundary";
+const ReactHookForm = lazy(() => import('../../Components/Forms/React-Hook-Form'));
 const RsuiteStepper = lazy(() => import('../../Components/Stepper/RsuiteStepper'));
 const StepIndex = lazy(() => import('../../Components/Stepper/CustomStepper'));
 const SignInWithFirebase = lazy(() => import('../../Components/Authentication/SignInWithGoogleFirebase'));
+// @ts-ignore
 const DynamicHome = lazy(() => import('../../Components/DynamicHome'));
 const Contact = lazy(() => import('../../Components/Home/Contact'));
 const ErrorBoundaryTest = lazy(() => import('../../Components/Home/ErrorBoundaryTest'));
@@ -139,7 +141,7 @@ const TREE = [
         url: '/form/react-hook-form',
         description: '',
         imageURL: '',
-        component: ''
+        component: <ErrorBoundary component={'ReactHookForm'} size={''}> <ReactHookForm /></ErrorBoundary>,
       },
       {
         No: 1,
