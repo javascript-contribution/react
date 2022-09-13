@@ -19,15 +19,14 @@ import SearchIcon from "@mui/icons-material/Search";
 import RightDrawer from "./Fragments/RightDrawer";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useNavigate } from "react-router";
+import { useAuth } from "../../Utils/Auth";
+import { signOutUser } from "../../Utils/Firebase";
+import { UserInfo } from "firebase/auth";
 import {
   Search,
   SearchIconWrapper,
   StyledInputBase,
 } from "./Fragments/StyledWrapper";
-import { useAuth } from "../../Utils/Auth";
-import { UserInfo } from "firebase/auth";
-import { signOutUser } from "../../Utils/Firebase";
-
 const pages = ["Dashboard", "Micro-Services", "About"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -98,7 +97,7 @@ const TopAppBar = () => {
               textDecoration: "none",
             }}
           >
-            REACT.JS
+            REACT.JS 
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
