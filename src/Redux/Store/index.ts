@@ -15,12 +15,12 @@ declare global {
 const sagaMiddleware = createSagaMiddleware();
 
 const middleWares = [
-  process.env['NODE_ENV'] !== 'production' && logger,
+  process.env.NODE_ENV !== 'production' && logger,
   sagaMiddleware,
 ].filter((middleware): middleware is Middleware => Boolean(middleware));
 
 const composeEnhancer =
-  (process.env['NODE_ENV'] !== 'production' &&
+  (process.env.NODE_ENV !== 'production' &&
     window &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
   compose;
