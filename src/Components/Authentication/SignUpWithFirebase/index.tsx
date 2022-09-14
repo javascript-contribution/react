@@ -3,7 +3,7 @@ import { AuthError, AuthErrorCodes } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { signUpStart } from "../../../Redux/Users/user.action";
+import { signUpStart } from "../../../States/Redux/Users/user.action";
 
 const defaultFormFields = {
   displayName: "",
