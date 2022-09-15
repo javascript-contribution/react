@@ -2,7 +2,7 @@ import React, { useState, FormEvent, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { emailSignInStart } from "../../../Redux/Users/user.action";
+import { emailSignInStart } from "../../../States/Redux/Users/user.action";
 import { CircularProgress } from "@mui/material";
 
 const defaultFormFields = {
