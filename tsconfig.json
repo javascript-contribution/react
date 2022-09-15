@@ -23,7 +23,6 @@
     "noPropertyAccessFromIndexSignature": true
   },
   "include": [
-    "src", "src/*.d.ts"
-, "src/StoryBooks/Authentication.stories.tsx", ".storybook/Home.stories.tsx"  ],
-  "exclude": ["node_modules"]
+      "src/**/*"
+  ]
 }
