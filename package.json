@@ -9,7 +9,8 @@
     "start": "webpack serve  --hot --open",
     "build": "webpack --config webpack.config.js --mode development",
     "storybook": "start-storybook",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "webpack" : "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -93,6 +94,7 @@
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.1.0",
     "dotenv": "^16.0.1",
+    "dotenv-webpack": "^8.0.1",
     "eslint": "^8.23.1",
     "eslint-config-react-app": "^7.0.1",
     "file-loader": "^6.2.0",

@@ -4,7 +4,7 @@ const path = require("path");
 const webpack = require("webpack");
 
 const isDevelopment = process.env.NODE_ENV !== "production";
-
+const dotEnv = require('dotenv-webpack')
 
 
 
@@ -228,9 +228,7 @@ module.exports = {
     
   },
   plugins: [
-    new webpack.DefinePlugin({
-      process: {env: {}}
-  }),
+    new dotEnv(),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
     }),
@@ -263,6 +261,7 @@ module.exports = {
             isDevelopment && require.resolve("react-refresh/babel"),
             ["relay", { artifactDirectory: "../../__generated__", eagerESModules: true }],
             ["@babel/plugin-transform-runtime"],
+            
           ].filter(Boolean),
         },
       },
